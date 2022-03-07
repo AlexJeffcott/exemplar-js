@@ -1,0 +1,6 @@
+{
+  "packages": [
+    "tsc-only-node"
+  ],
+  "version": "0.0.0"
+}

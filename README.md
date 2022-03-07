@@ -1,4 +1,4 @@
-# Mentorship
+# Exemplar JS
 ## Developer Guide
 ### Prerequisites
 - git
@@ -37,10 +37,13 @@ npm set-script start:dev "echo \"Add a start:dev script for PACKAGE_NAME\""
 ### Bootstrapping
 ```shell
 brew update && brew upgrade gh
-mkdir mentorship && cd $_
+mkdir exemplar-js && cd $_
 git init -b main
-printf "# Mentorship\n\n\`\`\`shell\nbrew update && brew upgrade gh\nmkdir mentorship && cd \$_\ngit init\nnpm init -y\n\`\`\`" > README.md
+printf "# Exemplar- JS\n\n\`\`\`shell\nbrew update && brew upgrade gh\nmkdir exemplar-js && cd \$_\ngit init\nnpm init -y\n\`\`\`" > README.md
 npm init -y
+git add .
+git commit -m "initial commit"
+gh repo create exemplar-js --source=. --private --disable-issues --disable-wiki --push
 ```
 
 ### It's a mono-repo

@@ -1,3 +1,8 @@
+require('dotenv').config();
+
+const { NODE_ENV } = process.env;
+console.log('|>> NODE_ENV in eslint config ===>', NODE_ENV);
+
 module.exports = {
 	root: true,
 	parser: '@typescript-eslint/parser',

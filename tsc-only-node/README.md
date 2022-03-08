@@ -20,6 +20,8 @@ npm init -y
 2. import modules that use Node built-ins (`http`, `url` etc.).
 3. import modules without specifying an extension.
 4. source maps should be built alongside code in development.
+5. development server
+6. linting
 
 ## Meeting requirements
 
@@ -47,15 +49,33 @@ npm init -y
    If your script generates an error, you'll see the line numbers from the generated `.js` files, which is not helpful. We want to see the original paths and line numbers from the `.ts` files. To do that, we'll add `sourceMap: true` to `tsconfig.json`, install [`source-map-support`](https://www.npmjs.com/package/source-map-support) and run node with the `-r source-map-support/register` parameter.
 
 5. Dev server
-    The `nodemon` package can be used along with `concurrently` to provide a clean development experience.
+   The `nodemon` package can be used along with `concurrently` to provide a clean development experience.
+
+6. Use lint with ESLint, with TypeScript support
+   ```shell
+   npm i -D eslint @types/eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser prettier @types/prettier eslint-config-prettier
+   ```
+   To use a config file for `eslint`, we must create an `.eslintrc.cjs` file not `.js` because of `"type": "module"` in `package.json`.
+   ```shell
+   printf "module.exports = {root: true,parser: \"@typescript-eslint/parser\",parserOptions: { ecmaVersion: 2020,sourceType: \"module\",tsconfigRootDir: __dirname,project: [\"./tsconfig.json\"],},plugins: [\"@typescript-eslint\"],env: {es2020: true,node: true,},extends: [\"eslint:recommended\",\"plugin:@typescript-eslint/recommended\",\"plugin:@typescript-eslint/recommended-requiring-type-checking\",\"prettier\",],};" > .eslintrc.cjs
+   printf "{\"useTabs\": true,\"singleQuote\": true,\"trailingComma\": \"none\",\"printWidth\": 100}" > .prettierrc
+   npx prettier --write .eslintrc.cjs .prettierrc
+   npm set-script
+   npm set-script eslint "eslint --ignore-path .gitignore --ext .ts --fix ."
+   npm set-script prettier "prettier --ignore-path .gitignore --write ."
+   npm set-script lint "npm run prettier && npm run eslint"
+   ```
 
 ## Caveats and preferences
+
 Here we are attempting to simplify the considerations surrounding consuming compiled code by putting js output in a build directory, typically `dist` or `build`. This is done using the `outDir` settings in `tsconfig.json`, but this sort of setup comes with an [annoying limitation](https://github.com/microsoft/TypeScript/issues/9858) of Typescript that [forbids importing files outside the `rootDir`](https://stackoverflow.com/questions/52121725/maintain-src-folder-structure-when-building-to-dist-folder-with-typescript-3). That can be a [problem with monorepos](https://github.com/microsoft/TypeScript/issues/17611).
 
 Another way of compiling generates `js` and `js.map` files 'in place'. In other words, at the location of the TS files that they result from. While some IDEs conveniently hide these files, it may be considered undesirable.
 
 ## Creating the npm scripts
+
 In light of this npm scripts would be as follows:
+
 ```shell
 npm set-script //base_scripts "the building blocks of commandscripts go here"
 npm set-script clean "rm -rf src/*.js src/**/*.js build"

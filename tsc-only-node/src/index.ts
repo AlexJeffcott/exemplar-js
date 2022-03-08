@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { strict as assert } from 'assert';
 import isWindows from 'is-windows';
 
@@ -13,10 +12,6 @@ const obj = {
 	first: [{ second: 'works' }]
 };
 console.log('|>> optional chaining should result in "works" ===>', obj?.first?.[0]?.second);
-
-// demonstrates use of env var
-const { NODE_ENV } = process.env;
-console.log('|>> NODE_ENV in code ===>', NODE_ENV);
 
 // import and use an amd module
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call

@@ -24,7 +24,6 @@ npm init -y
 6. linting
 7. env vars in code and config
 8. testing with code coverage reports
-9. build, lint, test ad release to tag in ci
 
 ## Meeting requirements
 
@@ -79,23 +78,25 @@ npm init -y
    add `import 'dotenv/config';` at the top of module entry points and `require('dotenv').config();` at the top of commonjs entry points
 
 8. Set up tests with coverage
+
    ```shell
    npm i -D @types/chai @types/mocha @types/mocha-each chai mocha mocha-each c8
    ```
+
    ensure `coverage` is in the `.gitignore` file
+
    ```shell
    printf "{\"lines\": 90,\"statements\": 90,\"functions\":  90,\"branches\": 90,\"check-coverage\": true,\"include\": [\"build/**\", \"!build/__tests__\"],\"exclude\": [\"build/index.js\"],\"per-file\": true,\"all\": true}" > .c8rc.json
    npx prettier --write .c8rc.json
    ```
+
    create scripts to tun tests from compiled code:
+
    ```shell
    npm set-script run-tests "mocha --bail --ui bdd --r source-map-support/register --experimental-specifier-resolution=node --recursive build/__tests__/**/*.test.js"
    npm set-script test "npm run clean && npm run build && npm run run-tests"
    npm set-script test:cov "npm run clean && npm run build && c8 --reporter=text --reporter=html npm run run-tests"
    ```
-
-9. Enable CI with testing
-   Using [GitHub Actions](https://github.com/features/actions), we can configure automatic testing via `.yml` files under [.github/workflows](.github/workflows).
 
 ## Caveats and preferences
 

@@ -23,6 +23,8 @@ npm init -y
 5. development server
 6. linting
 7. env vars in code and config
+8. testing with code coverage reports
+9. build, lint, test ad release to tag in ci
 
 ## Meeting requirements
 
@@ -91,6 +93,9 @@ npm init -y
    npm set-script test "npm run clean && npm run build && npm run run-tests"
    npm set-script test:cov "npm run clean && npm run build && c8 --reporter=text --reporter=html npm run run-tests"
    ```
+
+9. Enable CI with testing
+   Using [GitHub Actions](https://github.com/features/actions), we can configure automatic testing via `.yml` files under [.github/workflows](.github/workflows).
 
 ## Caveats and preferences
 

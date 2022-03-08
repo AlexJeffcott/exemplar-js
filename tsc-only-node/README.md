@@ -66,13 +66,14 @@ npm init -y
    npm set-script prettier "prettier --ignore-path .gitignore --write ."
    npm set-script lint "npm run prettier && npm run eslint"
    ```
-   
 7. Enable env vars in config files and code
+
    ```shell
    npm i -D dotenv
    npm set-script setup "printf \"NODE_ENV=DEVELOPMENT\" > .env"
    npm run setup
    ```
+
    add `import 'dotenv/config';` at the top of module entry points and `require('dotenv').config();` at the top of commonjs entry points
 
 8. Set up tests with coverage

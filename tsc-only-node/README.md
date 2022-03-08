@@ -66,15 +66,30 @@ npm init -y
    npm set-script prettier "prettier --ignore-path .gitignore --write ."
    npm set-script lint "npm run prettier && npm run eslint"
    ```
+   
 7. Enable env vars in config files and code
-
-   ```sh
+   ```shell
    npm i -D dotenv
    npm set-script setup "printf \"NODE_ENV=DEVELOPMENT\" > .env"
    npm run setup
    ```
-
    add `import 'dotenv/config';` at the top of module entry points and `require('dotenv').config();` at the top of commonjs entry points
+
+8. Set up tests with coverage
+   ```shell
+   npm i -D @types/chai @types/mocha @types/mocha-each chai mocha mocha-each c8
+   ```
+   ensure `coverage` is in the `.gitignore` file
+   ```shell
+   printf "{\"lines\": 90,\"statements\": 90,\"functions\":  90,\"branches\": 90,\"check-coverage\": true,\"include\": [\"build/**\", \"!build/__tests__\"],\"exclude\": [\"build/index.js\"],\"per-file\": true,\"all\": true}" > .c8rc.json
+   npx prettier --write .c8rc.json
+   ```
+   create scripts to tun tests from compiled code:
+   ```shell
+   npm set-script run-tests "mocha --bail --ui bdd --r source-map-support/register --experimental-specifier-resolution=node --recursive build/__tests__/**/*.test.js"
+   npm set-script test "npm run clean && npm run build && npm run run-tests"
+   npm set-script test:cov "npm run clean && npm run build && c8 --reporter=text --reporter=html npm run run-tests"
+   ```
 
 ## Caveats and preferences
 

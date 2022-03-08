@@ -1,0 +1,11 @@
+{
+	"lines": 90,
+	"statements": 90,
+	"functions": 90,
+	"branches": 90,
+	"check-coverage": true,
+	"include": ["build/**", "!build/__tests__"],
+	"exclude": ["build/index.js"],
+	"per-file": true,
+	"all": true
+}

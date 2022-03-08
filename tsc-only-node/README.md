@@ -22,6 +22,7 @@ npm init -y
 4. source maps should be built alongside code in development.
 5. development server
 6. linting
+7. env vars in code and config
 
 ## Meeting requirements
 
@@ -65,6 +66,15 @@ npm init -y
    npm set-script prettier "prettier --ignore-path .gitignore --write ."
    npm set-script lint "npm run prettier && npm run eslint"
    ```
+7. Enable env vars in config files and code
+
+   ```sh
+   npm i -D dotenv
+   npm set-script setup "printf \"NODE_ENV=DEVELOPMENT\" > .env"
+   npm run setup
+   ```
+
+   add `import 'dotenv/config';` at the top of module entry points and `require('dotenv').config();` at the top of commonjs entry points
 
 ## Caveats and preferences
 

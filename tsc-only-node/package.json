@@ -5,25 +5,27 @@
 	"keywords": [],
 	"author": "Alex Jeffcott",
 	"license": "ISC",
-	"main": "build/index.js",
+	"main": "build/src/index.js",
 	"type": "module",
 	"scripts": {
 		"//base_scripts": "the building blocks of commandscripts go here",
 		"clean": "rm -rf src/*.js src/**/*.js build",
-		"build": "tsc",
+		"build": "npm run clean && tsc",
 		"build:dev": "npm run clean && tsc --watch",
-		"run:dev": "nodemon --experimental-specifier-resolution=node -r source-map-support/register ./build",
-		"run": "node --experimental-specifier-resolution=node -r source-map-support/register ./build",
+		"run:dev": "nodemon --experimental-specifier-resolution=node -r source-map-support/register ./build/src",
+		"run": "node --experimental-specifier-resolution=node -r source-map-support/register ./build/src",
 		"eslint": "eslint --ignore-path .gitignore --ext .ts --fix .",
 		"prettier": "prettier --ignore-path .gitignore --write .",
-		"test": "mocha --bail --ui bdd --r source-map-support/register --experimental-specifier-resolution=node --recursive build/__tests__/**/*.test.js",
+		"test": "mocha --bail --ui bdd --r source-map-support/register --experimental-specifier-resolution=node --recursive ./build/src/__tests__/**/*.test.js",
 		"setup": "printf \"NODE_ENV=DEVELOPMENT\" > .env",
 		"//command_scripts": "the compositions of base_scripts go here",
 		"lint": "npm run prettier && npm run eslint",
 		"start": "npm run build && npm run run",
 		"start:dev": "concurrently \"npm:build:dev\" \"npm:run:dev\"",
 		"test:nocov": "npm run clean && npm run build && npm run test",
-		"test:cov": "npm run clean && npm run build && c8 --reporter=text --reporter=html npm run test"
+		"test:cov": "npm run clean && npm run build && c8 --clean --reporter=text npm run test",
+		"//ci": "ci only scripts can go here",
+		"test:ci": "c8 --reporter=json-summary npm run test"
 	},
 	"dependencies": {
 		"is-windows": "^1.0.2"

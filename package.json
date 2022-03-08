@@ -1,23 +1,23 @@
 {
-  "name": "mentorship",
+  "name": "exemplar-js",
   "version": "1.0.0",
   "description": "",
   "main": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlexJeffcott/mentorship.git"
+    "url": "git+https://github.com/AlexJeffcott/exemplar-js.git"
   },
   "keywords": [],
   "author": "Alex Jeffcott",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AlexJeffcott/mentorship/issues"
+    "url": "https://github.com/AlexJeffcott/exemplar-js/issues"
   },
   "engines": {
     "node": ">=16.X.X",
     "npm": ">=8.X.X"
   },
-  "homepage": "https://github.com/AlexJeffcott/mentorship#readme",
+  "homepage": "https://github.com/AlexJeffcott/exemplar-js#readme",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
@@ -26,6 +26,8 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
     "husky": "^7.0.0",

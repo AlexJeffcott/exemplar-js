@@ -95,7 +95,7 @@ npm init -y
    ```shell
    npm set-script run-tests "mocha --bail --ui bdd --r source-map-support/register --experimental-specifier-resolution=node --recursive build/__tests__/**/*.test.js"
    npm set-script test "npm run clean && npm run build && npm run run-tests"
-   npm set-script test:cov "npm run clean && npm run build && c8 --reporter=text --reporter=html npm run run-tests"
+   npm set-script test:cov "npm run clean && npm run build && c8 --reporter=text --reporter=lcov npm run run-tests"
    ```
 
 ## Caveats and preferences

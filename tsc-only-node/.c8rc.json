@@ -4,8 +4,9 @@
 	"functions": 90,
 	"branches": 90,
 	"check-coverage": true,
-	"include": ["build/**", "!build/__tests__"],
-	"exclude": ["build/index.js"],
+	"include": ["build/src/**", "!build/src/__tests__"],
+	"exclude": ["build/src/index.js"],
 	"per-file": true,
-	"all": true
+	"all": true,
+	"reportDir": "../coverage-tsc-node-only"
 }

@@ -68,7 +68,4 @@ const pipe =
 
 // const piped = pipe(trace('pipe start'), inc, trace('pipe middle'), inc, trace('pipe end'))(11);
 
-// console.log('composed', composed);
-// console.log('piped', piped);
-
 export { compose, pipe, trace, add, inc, inc10, inc20 };

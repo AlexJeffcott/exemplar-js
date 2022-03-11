@@ -1,0 +1,9 @@
+{
+	"threshold": 5,
+	"reporters": ["html", "console"],
+	"format": "javascript",
+	"include": ["build"],
+	"ignore": ["**/__tests__/**"],
+	"absolute": false,
+	"gitignore": true
+}

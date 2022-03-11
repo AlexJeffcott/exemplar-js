@@ -23,6 +23,7 @@
     "clean": "lerna clean",
     "add:dev": "lerna add --dev",
     "in-all-packages": "lerna run --stream",
+    "in-tsc-node-only": "lerna run --stream --scope tsc-node-only",
     "prepare": "husky install"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-const coverageSummary = require('../coverage-tsc-node-only/coverage-summary.json');
+const coverageSummary = require('../../coverage-tsc-node-only/coverage-summary.json');
 
 function convertJsonToMD(coverageJSON) {
     const coverageJSONList = Object.entries(coverageJSON);

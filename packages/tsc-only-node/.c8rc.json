@@ -8,5 +8,5 @@
 	"exclude": ["build/src/index.js"],
 	"per-file": true,
 	"all": true,
-	"reportDir": "../coverage-tsc-node-only"
+	"reportDir": "../../coverage-tsc-node-only"
 }

@@ -28,7 +28,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: build-assets
-          path: tsc-only-node/build
+          path: packages/tsc-only-node/build
 
   test:
     needs: build
@@ -46,14 +46,14 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: build-assets
-          path: tsc-only-node/build
+          path: packages/tsc-only-node/build
       - run: npx lerna run test:ci
       - uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const {getCoverageString} = require('./scripts/coverageUtils.cjs')
+            const {getCoverageString} = require('./packages/scripts/coverageUtils.cjs')
             
             const { issue: { number: issue_number }, repo: { owner, repo }, payload: { pull_request }  } = context;
 

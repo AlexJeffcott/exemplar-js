@@ -1,0 +1,7 @@
+.content {
+	padding: 2rem;
+}
+
+x-annotate {
+	border-bottom: 1px solid blue;
+}

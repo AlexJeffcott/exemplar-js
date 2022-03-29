@@ -98,3 +98,6 @@ Using [GitHub Actions](https://github.com/features/actions), we can configure au
 
 https://2ality.com/2019/10/hybrid-npm-packages.html
 https://www.sensedeep.com/blog/posts/2021/how-to-create-single-source-npm-module.html
+
+
+npx npm-check-updates -u

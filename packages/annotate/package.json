@@ -1,18 +1,17 @@
 {
-	"name": "tsc-only-node",
+	"name": "annotate",
 	"version": "1.0.0",
-	"description": "A bare-minimum node project using javascript modules, env-vars, a dev-server, static analysis and unit testing with Typescript",
+	"description": "Performant annotation utils",
 	"keywords": [],
 	"author": "Alex Jeffcott",
 	"license": "ISC",
 	"main": "build/src/index.js",
-	"types": "build/types/index.d.ts",
+	"types": "build/src/index.d.ts",
 	"type": "module",
 	"scripts": {
 		"//base_scripts": "the building blocks of commandscripts go here",
-		"emit-types": "tsc --declaration --emitDeclarationOnly --outDir ./build/types",
 		"clean": "rm -rf src/*.js src/**/*.js build",
-		"build": "npm run clean && tsc",
+		"build": "npm run clean && tsc --declaration",
 		"build:dev": "npm run clean && tsc --watch",
 		"run:dev": "nodemon --experimental-specifier-resolution=node -r source-map-support/register ./build/src",
 		"run": "node --experimental-specifier-resolution=node -r source-map-support/register ./build/src",
@@ -25,13 +24,10 @@
 		"lint": "npm run prettier && npm run eslint && npm run jscpd",
 		"start": "npm run build && npm run run",
 		"start:dev": "concurrently \"npm:build:dev\" \"npm:run:dev\"",
-		"test:nocov": "npm run clean && npm run build && npm run test",
+		"test:nocov": "npm run build && npm run test",
 		"test:cov": "npm run clean && npm run build && c8 --clean --reporter=text npm run test",
 		"//ci": "ci only scripts can go here",
 		"test:ci": "c8 --reporter=json-summary npm run test"
-	},
-	"dependencies": {
-		"is-windows": "^1.0.2"
 	},
 	"devDependencies": {
 		"@types/chai": "^4.3.0",
@@ -49,6 +45,7 @@
 		"dotenv": "^16.0.0",
 		"eslint": "^8.12.0",
 		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-simple-import-sort": "^7.0.0",
 		"jscpd": "^3.4.5",
 		"mocha": "^9.2.2",
 		"mocha-each": "^2.0.1",

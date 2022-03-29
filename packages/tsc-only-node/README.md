@@ -10,7 +10,7 @@
 ## Bootstrapping this package
 
 ```shell
-printf ".code\n.idea\nnode_modules\nbuild\n.env" > .gitignore
+printf ".code\n.idea\nnode_modules\nbuild\n.env" >.gitignore
 npm init -y
 ```
 
@@ -29,7 +29,7 @@ npm init -y
 
 1. To ONLY use tsc as a TS compiler AND use modular javascript you need to:
 
-   - Add `"type": "module"` to package.json, because [TypeScript can't generate files with the .mjs extension](https://github.com/microsoft/TypeScript/issues/18442#issuecomment-581738714).
+   - Add `"type": "module"` to package.json, because [TypeScript can't generate files with the.mjs extension](https://github.com/microsoft/TypeScript/issues/18442#issuecomment-581738714).
    - In [`tsconfig.json`](tsconfig.json), set this in `compilerOptions`:
      ```json
       "target": "esnext",
@@ -45,7 +45,7 @@ npm init -y
 
 3. Import your own modules without specifying an extension
    When transpiling, [TypeScript won't generate an extension for you](https://github.com/microsoft/TypeScript/issues/16577). Run Node with the [`node --experimental-specifier-resolution=node` parameter](https://nodejs.org/api/cli.html#cli_experimental_specifier_resolution_mode), otherwise, [node mandates that you specify the extension](https://nodejs.org/api/esm.html#esm_mandatory_file_extensions) in the `import` statement.
-   `node --experimental-specifier-resolution=node ./src/__tests__`
+   `node --experimental-specifier-resolution=node./src/__tests__`
 
 4. Source maps
    If your script generates an error, you'll see the line numbers from the generated `.js` files, which is not helpful. We want to see the original paths and line numbers from the `.ts` files. To do that, we'll add `sourceMap: true` to `tsconfig.json`, install [`source-map-support`](https://www.npmjs.com/package/source-map-support) and run node with the `-r source-map-support/register` parameter.
@@ -59,19 +59,19 @@ npm init -y
    ```
    To use a config file for `eslint`, we must create an `.eslintrc.cjs` file not `.js` because of `"type": "module"` in `package.json`.
    ```shell
-   printf "module.exports = {root: true,parser: \"@typescript-eslint/parser\",parserOptions: { ecmaVersion: 2020,sourceType: \"module\",tsconfigRootDir: __dirname,project: [\"./tsconfig.json\"],},plugins: [\"@typescript-eslint\"],env: {es2020: true,node: true,},extends: [\"eslint:recommended\",\"plugin:@typescript-eslint/recommended\",\"plugin:@typescript-eslint/recommended-requiring-type-checking\",\"prettier\",],};" > .eslintrc.cjs
-   printf "{\"useTabs\": true,\"singleQuote\": true,\"trailingComma\": \"none\",\"printWidth\": 100}" > .prettierrc
-   npx prettier --write .eslintrc.cjs .prettierrc
+   printf "module.exports = {root: true,parser: \"@typescript-eslint/parser\",parserOptions: { ecmaVersion: 2020,sourceType: \"module\",tsconfigRootDir: __dirname,project: [\"./tsconfig.json\"],},plugins: [\"@typescript-eslint\"],env: {es2020: true,node: true,},extends: [\"eslint:recommended\",\"plugin:@typescript-eslint/recommended\",\"plugin:@typescript-eslint/recommended-requiring-type-checking\",\"prettier\",],};" >.eslintrc.cjs
+   printf "{\"useTabs\": true,\"singleQuote\": true,\"trailingComma\": \"none\",\"printWidth\": 100}" >.prettierrc
+   npx prettier --write.eslintrc.cjs.prettierrc
    npm set-script
-   npm set-script eslint "eslint --ignore-path .gitignore --ext .ts --fix ."
-   npm set-script prettier "prettier --ignore-path .gitignore --write ."
+   npm set-script eslint "eslint --ignore-path.gitignore --ext.ts --fix."
+   npm set-script prettier "prettier --ignore-path.gitignore --write."
    npm set-script lint "npm run prettier && npm run eslint"
    ```
 7. Enable env vars in config files and code
 
    ```shell
    npm i -D dotenv
-   npm set-script setup "printf \"NODE_ENV=DEVELOPMENT\" > .env"
+   npm set-script setup "printf \"NODE_ENV=DEVELOPMENT\" >.env"
    npm run setup
    ```
 
@@ -86,8 +86,8 @@ npm init -y
    ensure `coverage` is in the `.gitignore` file
 
    ```shell
-   printf "{\"lines\": 90,\"statements\": 90,\"functions\":  90,\"branches\": 90,\"check-coverage\": true,\"include\": [\"build/**\", \"!build/__tests__\"],\"exclude\": [\"build/index.js\"],\"per-file\": true,\"all\": true}" > .c8rc.json
-   npx prettier --write .c8rc.json
+   printf "{\"lines\": 90,\"statements\": 90,\"functions\":  90,\"branches\": 90,\"check-coverage\": true,\"include\": [\"build/**\", \"!build/__tests__\"],\"exclude\": [\"build/index.js\"],\"per-file\": true,\"all\": true}" >.c8rc.json
+   npx prettier --write.c8rc.json
    ```
 
    create scripts to tun tests from compiled code:
@@ -113,8 +113,8 @@ npm set-script //base_scripts "the building blocks of commandscripts go here"
 npm set-script clean "rm -rf src/*.js src/**/*.js build"
 npm set-script build "tsc"
 npm set-script build:dev "npm run clean && tsc --watch"
-npm set-script run:dev "nodemon --experimental-specifier-resolution=node -r source-map-support/register ./build"
-npm set-script run "node --experimental-specifier-resolution=node -r source-map-support/register ./build"
+npm set-script run:dev "nodemon --experimental-specifier-resolution=node -r source-map-support/register./build"
+npm set-script run "node --experimental-specifier-resolution=node -r source-map-support/register./build"
 npm set-script //command_scripts "the compositions of base_scripts go here"
 npm set-script start "npm run build && npm run run"
 npm set-script start:dev "concurrently \"npm:build:dev\" \"npm:run:dev\""

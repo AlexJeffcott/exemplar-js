@@ -1,7 +1,9 @@
 {
+	"include": ["src/**/*"],
+	"exclude": ["src/__tests__/**/*"],
 	"compilerOptions": {
-		"outDir": "build",
-		"rootDir": "./",
+		"useDefineForClassFields": true,
+		"rootDir": "./src",
 		"target": "ESNext",
 		"module": "ESNext",
 		"moduleResolution": "node",

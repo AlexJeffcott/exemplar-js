@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Match } from '../../../build';
+import { Match } from '../../';
 
 const insensitive = new Map([
 	['123', ['abc']],

@@ -16,7 +16,7 @@
 		"build:dev": "npm run clean && tsc --watch",
 		"run:dev": "nodemon --experimental-specifier-resolution=node -r source-map-support/register ./build/src",
 		"run": "node --experimental-specifier-resolution=node -r source-map-support/register ./build/src",
-		"eslint": "eslint --ignore-path .gitignore --ext.ts --fix .",
+		"eslint": "eslint --ignore-path .gitignore --ext .ts --fix .",
 		"prettier": "prettier --ignore-path .gitignore --write .",
 		"jscpd": "jscpd -t 16",
 		"test": "mocha --bail --ui bdd --r source-map-support/register --experimental-specifier-resolution=node --recursive ./build/src/__tests__/**/*.test.js",

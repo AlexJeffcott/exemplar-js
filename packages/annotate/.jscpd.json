@@ -1,9 +1,9 @@
 {
-	"threshold": 5,
+	"threshold": 40,
 	"reporters": ["html", "console"],
-	"format": "javascript",
-	"include": ["build/*", "build/**/*"],
-	"ignore": ["**/__tests__/**"],
+	"format": "typescript",
+	"include": ["src/**/*"],
+	"ignore": ["**/__tests__"],
 	"absolute": false,
 	"gitignore": true
 }

@@ -20,6 +20,7 @@ jobs:
           cache: "npm"
       - run: npm ci --no-scripts
       - run: npx lerna bootstrap
+      - run: npx lerna run emit
       - run: npx lerna run lint
       - run: npx lerna run build
       - uses: actions/upload-artifact@v3
@@ -48,5 +49,19 @@ jobs:
         if: github.event_name == 'pull_request'
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
-          script: | const {getCoverageString} = require('./packages/scripts/coverageUtils.cjs')  const { issue: { number: issue_number }, repo: { owner, repo }, payload: { pull_request }  } = context;
- const compared = await github.rest.repos.compareCommits({   base: pull_request.base.sha,   head: pull_request.head.sha,   owner,   repo })  const fileDiff = compared.data.files.map((file) => file.filename) const coverageString = getCoverageString(fileDiff)  github.rest.issues.createComment({ issue_number, owner, repo, body: coverageString });
+          script: |
+            const {getCoverageString} = require('./packages/scripts/coverageUtils.cjs')
+            
+            const { issue: { number: issue_number }, repo: { owner, repo }, payload: { pull_request }  } = context;
+
+            const compared = await github.rest.repos.compareCommits({
+              base: pull_request.base.sha,
+              head: pull_request.head.sha,
+              owner,
+              repo
+            })
+            
+            const fileDiff = compared.data.files.map((file) => file.filename)
+            const coverageString = getCoverageString(fileDiff)
+            
+            github.rest.issues.createComment({ issue_number, owner, repo, body: coverageString });

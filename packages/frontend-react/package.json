@@ -8,8 +8,8 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"eslint": "eslint --ignore-path.gitignore --fix.",
-		"prettier": "prettier --ignore-path.gitignore --write.",
+		"eslint": "eslint --ignore-path .gitignore --fix .",
+		"prettier": "prettier --ignore-path .gitignore --write .",
 		"jscpd": "jscpd -t 16",
 		"setup": "printf \"NODE_ENV=DEVELOPMENT\" >.env"
 	},

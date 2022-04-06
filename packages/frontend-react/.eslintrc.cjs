@@ -36,6 +36,10 @@ module.exports = {
 		'react/react-in-jsx-scope': 'off',
 		'react/prop-types': 'off',
 		'@typescript-eslint/no-explicit-any': 0,
-		'@typescript-eslint/ban-ts-comment': 0
+		'@typescript-eslint/ban-ts-comment': 0,
+		'@typescript-eslint/no-unsafe-assignment': 0, // https://github.com/typescript-eslint/typescript-eslint/issues/2109
+		'@typescript-eslint/no-unsafe-call': 0, // https://github.com/typescript-eslint/typescript-eslint/issues/2109
+		'@typescript-eslint/no-unsafe-return': 0, // https://github.com/typescript-eslint/typescript-eslint/issues/2109
+		'@typescript-eslint/no-unsafe-member-access': 0 // https://github.com/typescript-eslint/typescript-eslint/issues/2109
 	}
 };

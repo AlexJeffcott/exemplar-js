@@ -3,5 +3,7 @@
 }
 
 x-annotate {
-	border-bottom: 1px solid blue;
+	border-bottom-color: cadetblue;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
 }

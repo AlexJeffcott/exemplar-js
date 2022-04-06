@@ -2,7 +2,7 @@ node_modules
 dist
 dist-ssr
 *.local
-
+report
 .code
 .idea
 .DS_Store

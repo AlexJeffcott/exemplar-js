@@ -1,7 +1,7 @@
 {
 	"threshold": 5,
 	"reporters": ["html", "console"],
-	"format": "javascript",
+	"format": "typescript",
 	"include": ["build"],
 	"ignore": ["**/__tests__/**"],
 	"absolute": false,

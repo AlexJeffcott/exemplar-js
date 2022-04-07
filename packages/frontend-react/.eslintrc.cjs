@@ -10,20 +10,31 @@ module.exports = {
 		ecmaVersion: 2020,
 		sourceType: 'module',
 		tsconfigRootDir: __dirname,
-		project: ['./tsconfig.json']
+		ecmaFeatures: {
+			jsx: true
+		},
+		project: './tsconfig.json'
 	},
-	plugins: ['simple-import-sort'],
+	settings: {
+		react: {
+			version: 'detect'
+		}
+	},
 	env: {
-		es2020: true,
-		node: true
+		browser: true,
+		es2020: true
 	},
 	extends: [
 		'eslint:recommended',
+		'plugin:react/recommended',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:@typescript-eslint/recommended-requiring-type-checking',
 		'prettier'
 	],
+	plugins: ['simple-import-sort'],
 	rules: {
+		'react/react-in-jsx-scope': 'off',
+		'react/prop-types': 'off',
 		'@typescript-eslint/no-explicit-any': 0,
 		'@typescript-eslint/ban-ts-comment': 0
 	}

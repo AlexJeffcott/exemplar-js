@@ -24,7 +24,6 @@
     "add:dev": "lerna add --dev",
     "in-all-packages": "lerna run --stream",
     "in-tsc-node-only": "lerna run --stream --scope tsc-node-only",
-    "in-annotate": "lerna run --stream --scope annotate",
     "prepare": "husky install"
   },
   "devDependencies": {

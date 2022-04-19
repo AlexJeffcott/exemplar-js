@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import logo from '../../assets/logo.svg';
 import './LandingPage.css';
 
-function LandingPage() {
+const LandingPage: FC = () => {
 	const [count, setCount] = useState(0);
 
 	return (
@@ -40,6 +40,6 @@ function LandingPage() {
 			</header>
 		</div>
 	);
-}
+};
 
 export default LandingPage;

@@ -1,5 +1,5 @@
 {
-	"threshold": 5,
+	"threshold": 16,
 	"reporters": ["html", "console"],
 	"format": "typescript",
 	"include": ["build"],

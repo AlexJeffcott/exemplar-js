@@ -50,7 +50,7 @@ mkdir exemplar-js && cd $_
 git init -b main
 printf "# Exemplar- JS\n\n\`\`\`shell\nbrew update && brew upgrade gh\nmkdir exemplar-js && cd \$_\ngit init\nnpm init -y\n\`\`\`" > README.md
 npm init -y
-git add.
+git add .
 git commit -m "initial commit"
 gh repo create exemplar-js --source=. --private --disable-issues --disable-wiki --push
 ```
@@ -72,9 +72,9 @@ More can be found out at [husky docs](https://typicode.github.io/husky) and [com
 ```shell
 npm i -D husky @commitlint/cli @commitlint/config-conventional
 npx husky-init && npm install
-npx husky add.husky/commit-msg 'npx --no-install commitlint --edit "$1"'
-npx husky add.husky/pre-commit "npx lerna run lint"
-npx husky add.husky/pre-commit "npx lerna run test"
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+npx husky add .husky/pre-commit "npx lerna run lint"
+npx husky add .husky/pre-commit "npx lerna run test"
 ```
 
 N.B. You'll need to remove the line `npm test` from `.husky/pre-commit`
@@ -88,8 +88,8 @@ npm uninstall husky @commitlint/cli @commitlint/config-conventional && git confi
 Enable CI with testing
 
 ```shell
-mkdir -p.github/workflows
-printf "# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node" >.github/workflows/workflow.yml
+mkdir -p .github/workflows
+printf "# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node" > .github/workflows/workflow.yml
 ```
 
 Using [GitHub Actions](https://github.com/features/actions), we can configure automatic testing via `.yml` files under [.github/workflows](.github/workflows).
@@ -99,5 +99,11 @@ Using [GitHub Actions](https://github.com/features/actions), we can configure au
 https://2ality.com/2019/10/hybrid-npm-packages.html
 https://www.sensedeep.com/blog/posts/2021/how-to-create-single-source-npm-module.html
 
+#### Interesting gotchas
+1. if you install `"@types/react-router-dom": "^5.3.3",`, then you will get tsc errors due to a typing conflict. Simply remove the package.
+2. you should include `vite.config.js` (not `.ts`) in the `include` array in tsconfig.json for eslint, but it should not be parsed as typescript as this creates problems with vite's own typing dependencies.
 
+#### update deps
+```shell
 npx npm-check-updates -u
+```

@@ -19,9 +19,9 @@ jobs:
           node-version: 16
           cache: "npm"
       - run: npm ci --no-scripts
-      - run: npx lerna bootstrap
-      - run: npx lerna run lint
-      - run: npx lerna run build
+      - run: npm run bootstrap
+      - run: npm run in-all-packages lint
+      - run: npm run in-all-packages build
       - uses: actions/upload-artifact@v3
         with:
           path: packages/**/build
@@ -38,12 +38,12 @@ jobs:
           node-version: 16
           cache: "npm"
       - run: npm ci --no-scripts
-      - run: npx lerna bootstrap
+      - run: npm run bootstrap
       - uses: actions/download-artifact@v3
         with:
           name: artifact
           path: packages
-      - run: npx lerna run test:ci
+      - run: npm run in-all-packages test:ci
       - uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
         with:
